@@ -545,6 +545,53 @@
 <li>Reference (API): see <a href="reference/">API Reference</a></li>
 <li>Explanations/Design: (coming soon)</li>
 </ul>
+<h1 id="qonscious">Qonscious</h1>
+<p><strong>Qonscious</strong> is a runtime framework designed to support conditional execution of quantum circuits based on resource introspection. It helps you build quantum applications that are aware of backend conditions — such as entanglement, coherence, or fidelity — before execution.</p>
+<h2 id="why-qonscious">Why Qonscious?</h2>
+<p>In the NISQ era, quantum hardware is noisy, resource-limited, and variable over time. Static resource assumptions lead to unreliable results. <strong>Qonscious</strong> makes quantum programs introspective and adaptive.</p>
+<p>For a deeper discusion on the motivation behind Qonscious, read <a href="https://arxiv.org/html/2508.19276v1">our article</a></p>
+<h2 id="key-features">Key Features</h2>
+<ul>
+<li>Figures of Merit evaluation (e.g., get CHSH score)</li>
+<li>Conditional execution on compliance with figures of merit checks</li>
+<li>Inversion of control: pass a callback, not a circuit</li>
+<li>Built-in logging, extensibility, and fallback logic</li>
+</ul>
+<h2 id="use-cases">Use cases</h2>
+<p>These are some scenarios where you may use Qonscious:</p>
+<ul>
+<li>Run a circuit conditional on your target computer (or simulator) checking some figures of merit (e.g., number of qubits, CHSH score, etc.)</li>
+<li>Benchmark a computer (or simulator) in terms of a collection of figures of merit.</li>
+<li>Explore correlations between experiment results and figures of merit of a gicen computer (or simulator)</li>
+<li>...</li>
+</ul>
+<h2 id="setting-up-dependencies">Setting up dependencies</h2>
+<p>This project is organized with a pyproject.toml file, so there is no longer a need for a requirements.txt file.</p>
+<p>Python version is set in .python-version</p>
+<p>We recommend working in a Python virtual environment. The following snippet of code provides examples of most of the tasks you'll need to complete. </p>
+<pre><code class="language-bash">python -m venv .venv 
+source .venv/bin/activate
+pip install -U pip wheel
+pip install -e &quot;.[dev,notebooks,viz,docs]&quot; # you can leave notebooks and viz out of you are only working on the framework.
+</code></pre>
+<p>The <strong>-e flag</strong> in pip install tells pip to install Qonscious as a dependency so you can import from any Jupyter notebook working on the same venv while lettig you edit the framework.</p>
+<h2 id="documentation">Documentation</h2>
+<p>Up to date documentation is available on <a href="https://lifia-unlp.github.io/qonscious/">github pages</a></p>
+<h2 id="examples">Examples</h2>
+<p>The notebooks folder contains several examples of using Qonscious in different use cases. </p>
+<p>We suggest you start with <strong>chsh_test_demo.ipynb</strong></p>
+<h1 id="development-notes">Development notes</h1>
+<h2 id="visualstudio-code">VisualStudio Code</h2>
+<p>There is a _vscode_example_settings.json file that you can rename to .vscode/settings.json . It provides most default settings that help VSC find tests, work with notebooks, etc. </p>
+<h2 id="ruff">ruff</h2>
+<p>pyproject.toml includes default configurations for ruff (linting, etc.). Ruff is part of the [dev] dependencies.</p>
+<p>To use ruff from the command line (and let ruff format, and tidy up code),  do as follows:</p>
+<pre><code class="language-python">ruff check . --fix
+ruff format .
+</code></pre>
+<h2 id="pyright">pyright</h2>
+<p>This project uses pyright as a typechecker (In VSCode it will work via PyLance).</p>
+<p>Settings are defined in pyrightconfig.json</p>
 
 
 
