@@ -552,15 +552,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#qonscious.core.ScorableFigureOfMeritResult" class="md-nav__link">
-    <span class="md-ellipsis">
-      ScorableFigureOfMeritResult
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#qonscious.core.run_conditionally" class="md-nav__link">
     <span class="md-ellipsis">
       run_conditionally
@@ -784,15 +775,6 @@
   <a href="#qonscious.core.QonsciousResult" class="md-nav__link">
     <span class="md-ellipsis">
       QonsciousResult
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#qonscious.core.ScorableFigureOfMeritResult" class="md-nav__link">
-    <span class="md-ellipsis">
-      ScorableFigureOfMeritResult
     </span>
   </a>
   
@@ -1157,7 +1139,7 @@ They can eventually subclass this class to better support type-checking and docu
           <tr class="doc-section-item">
             <td><code><span title="qonscious.core.FigureOfMeritResult.properties">properties</span></code></td>
             <td>
-                  <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>] | None</code>
+                  <code><span title="dict">dict</span>[<span title="str">str</span>, <span title="typing.Any">Any</span>]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1219,7 +1201,7 @@ They can eventually subclass this class to better support type-checking and docu
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="n">figure_of_merit</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">properties</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="n">properties</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]</span>
     <span class="n">experiment_result</span><span class="p">:</span> <span class="n">ExperimentResult</span> <span class="o">|</span> <span class="kc">None</span>
 </code></pre></div></td></tr></table></div>
               </details>
@@ -1449,112 +1431,11 @@ and return a dict with the compliance outcome and the FOM result (if any).</p>
           <tr class="doc-section-item">
             <td><code><span title="qonscious.core.QonsciousResult.figures_of_merit_results">figures_of_merit_results</span></code></td>
             <td>
-                  <code><span title="list">list</span>[<a class="autorefs autorefs-internal" title="FigureOfMeritResult (qonscious.core.types.FigureOfMeritResult)" href="#qonscious.core.FigureOfMeritResult">FigureOfMeritResult</a>] | None</code>
+                  <code><span title="list">list</span>[<a class="autorefs autorefs-internal" title="FigureOfMeritResult (qonscious.core.types.FigureOfMeritResult)" href="#qonscious.core.FigureOfMeritResult">FigureOfMeritResult</a>]</code>
             </td>
             <td>
               <div class="doc-md-description">
                 <p>FigureOfMeritResults that were considered in this run.</p>
-              </div>
-            </td>
-          </tr>
-      </tbody>
-    </table>
-
-
-
-
-
-
-
-
-              <details class="quote">
-                <summary>Source code in <code>src/qonscious/core/types.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">QonsciousResult</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Unified structure returned by the QonsciousRunner run method.</span>
-
-<span class="sd">    Attributes:</span>
-<span class="sd">        contition: String describing the condition under which the run executed (for now only fail/pass).</span>
-<span class="sd">        experiment_result: ExperimentResult that was obtained in this run.</span>
-<span class="sd">        figures_of_merit_results: FigureOfMeritResults that were considered in this run.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">condition</span><span class="p">:</span> <span class="nb">str</span>
-    <span class="n">experiment_result</span><span class="p">:</span> <span class="n">ExperimentResult</span> <span class="o">|</span> <span class="kc">None</span>
-    <span class="n">figures_of_merit_results</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">FigureOfMeritResult</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
-</code></pre></div></td></tr></table></div>
-              </details>
-
-
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-
-
-
-
-
-  </div>
-
-    </div>
-
-</div>
-
-<div class="doc doc-object doc-class">
-
-
-
-<h3 id="qonscious.core.ScorableFigureOfMeritResult" class="doc doc-heading">
-            <code>ScorableFigureOfMeritResult</code>
-
-
-</h3>
-
-
-    <div class="doc doc-contents ">
-            <p class="doc doc-class-bases">
-              Bases: <code><a class="autorefs autorefs-internal" title="FigureOfMeritResult (qonscious.core.types.FigureOfMeritResult)" href="#qonscious.core.FigureOfMeritResult">FigureOfMeritResult</a></code></p>
-
-
-        <p>Extension of FigureOfMeritResult for figures of merit that can be scored.</p>
-
-
-<p><span class="doc-section-title">Attributes:</span></p>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Type</th>
-          <th>Description</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr class="doc-section-item">
-            <td><code><span title="qonscious.core.ScorableFigureOfMeritResult.score">score</span></code></td>
-            <td>
-                  <code><span title="float">float</span></code>
-            </td>
-            <td>
-              <div class="doc-md-description">
-                <p>Numerical score assigned to the figure of merit result.</p>
               </div>
             </td>
           </tr>
@@ -1578,15 +1459,23 @@ and return a dict with the compliance outcome and the FOM result (if any).</p>
 <span class="normal">54</span>
 <span class="normal">55</span>
 <span class="normal">56</span>
-<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ScorableFigureOfMeritResult</span><span class="p">(</span><span class="n">FigureOfMeritResult</span><span class="p">):</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">QonsciousResult</span><span class="p">(</span><span class="n">TypedDict</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Extension of FigureOfMeritResult for figures of merit that can be scored.</span>
+<span class="sd">    Unified structure returned by the QonsciousRunner run method.</span>
 
 <span class="sd">    Attributes:</span>
-<span class="sd">        score: Numerical score assigned to the figure of merit result.</span>
+<span class="sd">        contition: String describing the condition under which the run executed (for now only fail/pass).</span>
+<span class="sd">        experiment_result: ExperimentResult that was obtained in this run.</span>
+<span class="sd">        figures_of_merit_results: FigureOfMeritResults that were considered in this run.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">score</span><span class="p">:</span> <span class="nb">float</span>
+    <span class="n">condition</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">experiment_result</span><span class="p">:</span> <span class="n">ExperimentResult</span> <span class="o">|</span> <span class="kc">None</span>
+    <span class="n">figures_of_merit_results</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">FigureOfMeritResult</span><span class="p">]</span>
 </code></pre></div></td></tr></table></div>
               </details>
 
@@ -1756,8 +1645,7 @@ Returns a QonsciousResult with 'fom_results' and optionally 'execution'.</p>
 
               <details class="quote">
                 <summary>Source code in <code>src/qonscious/adapters/aer_sampler_adapter.py</code></summary>
-                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">18</span>
-<span class="normal">19</span>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">19</span>
 <span class="normal">20</span>
 <span class="normal">21</span>
 <span class="normal">22</span>
@@ -1801,9 +1689,7 @@ Returns a QonsciousResult with 'fom_results' and optionally 'execution'.</p>
 <span class="normal">60</span>
 <span class="normal">61</span>
 <span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AerSamplerAdapter</span><span class="p">(</span><span class="n">BackendAdapter</span><span class="p">):</span>
+<span class="normal">63</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AerSamplerAdapter</span><span class="p">(</span><span class="n">BackendAdapter</span><span class="p">):</span>
     <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sampler</span><span class="p">:</span> <span class="n">Sampler</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sampler</span> <span class="o">=</span> <span class="n">sampler</span> <span class="ow">or</span> <span class="n">Sampler</span><span class="p">()</span>
 
@@ -1828,22 +1714,19 @@ Returns a QonsciousResult with 'fom_results' and optionally 'execution'.</p>
     <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">circuit</span><span class="p">:</span> <span class="n">QuantumCircuit</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ExperimentResult</span><span class="p">:</span>
         <span class="n">shots</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;shots&quot;</span><span class="p">,</span> <span class="mi">1024</span><span class="p">)</span>
         <span class="n">created</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
-        <span class="n">job</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">circuits</span><span class="o">=</span><span class="p">[</span><span class="n">circuit</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="n">shots</span><span class="p">)</span>
+        <span class="n">job</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sampler</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">pubs</span><span class="o">=</span><span class="p">[</span><span class="n">circuit</span><span class="p">],</span> <span class="n">shots</span><span class="o">=</span><span class="n">shots</span><span class="p">)</span>
         <span class="n">running</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
-        <span class="n">quasi_dist</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()</span><span class="o">.</span><span class="n">quasi_dists</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">job</span><span class="o">.</span><span class="n">result</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">finished</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">(</span><span class="n">timezone</span><span class="o">.</span><span class="n">utc</span><span class="p">)</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()</span>
-        <span class="c1"># Convert to counts with bitstring keys (e.g., &#39;00&#39;, &#39;11&#39;)</span>
-        <span class="n">counts</span> <span class="o">=</span> <span class="p">{</span>
-            <span class="nb">format</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;0</span><span class="si">{</span><span class="n">circuit</span><span class="o">.</span><span class="n">num_qubits</span><span class="si">}</span><span class="s2">b&quot;</span><span class="p">):</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">prob</span> <span class="o">*</span> <span class="n">shots</span><span class="p">))</span>
-            <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">prob</span> <span class="ow">in</span> <span class="n">quasi_dist</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
-        <span class="p">}</span>
+
+        <span class="n">raw</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">join_data</span><span class="p">()</span>
+        <span class="n">arr</span> <span class="o">=</span> <span class="n">raw</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;uint8&quot;</span><span class="p">,</span> <span class="n">copy</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">raw</span><span class="p">,</span> <span class="n">BitArray</span><span class="p">)</span> <span class="k">else</span> <span class="n">raw</span><span class="o">.</span><span class="n">array</span>
+        <span class="n">counts</span> <span class="o">=</span> <span class="n">BitArray</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span> <span class="n">circuit</span><span class="o">.</span><span class="n">num_clbits</span><span class="p">)</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
 
         <span class="k">return</span> <span class="p">{</span>
             <span class="s2">&quot;counts&quot;</span><span class="p">:</span> <span class="n">counts</span><span class="p">,</span>
             <span class="s2">&quot;shots&quot;</span><span class="p">:</span> <span class="n">shots</span><span class="p">,</span>
-            <span class="s2">&quot;backend_properties&quot;</span><span class="p">:</span> <span class="p">{</span>
-                <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">sampler</span><span class="o">.</span><span class="n">options</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;backend_name&quot;</span><span class="p">,</span> <span class="s2">&quot;aer_simulator&quot;</span><span class="p">)</span>
-            <span class="p">},</span>
+            <span class="s2">&quot;backend_properties&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;qiskit_aer.primitives.SamplerV2&quot;</span><span class="p">},</span>
             <span class="s2">&quot;timestamps&quot;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s2">&quot;created&quot;</span><span class="p">:</span> <span class="n">created</span><span class="p">,</span>
                 <span class="s2">&quot;running&quot;</span><span class="p">:</span> <span class="n">running</span><span class="p">,</span>
