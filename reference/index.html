@@ -833,9 +833,17 @@ from qonscious.adapters import IBMSamplerAdapter
 adapter = IBMSamplerAdapter(FakeManilaV2()) # edit as needed
 </code></pre>
 <p>You can create an adapter on IBM's least bussy (real) quantum computer as follows:</p>
-<pre><code class="language-Python">from qonscious.adapters import IBMSamplerAdapter
+<pre><code class="language-Python">import os
+from qonscious.adapters import IBMSamplerAdapter
 ibm_token = os.getenv(&quot;IBM_QUANTUM_TOKEN&quot;) # edit as needed
 adapter = IBMSamplerAdapter.least_busy_backend(ibm_token)
+</code></pre>
+<p>You can even create an adapter on IonQ's QPU. This example shows how to work with
+the simulator of Aria-1 (including its noise model).</p>
+<pre><code class="language-Python">import os
+from qonscious.adapters import IonQBackendAdapter
+api_key = os.getenv(&quot;IONQ_API_KEY&quot;)
+adapter = IonQBackendAdapter.simulated_aria(api_key)
 </code></pre>
 
 
