@@ -838,6 +838,12 @@ from qonscious.adapters import IBMSamplerAdapter
 ibm_token = os.getenv(&quot;IBM_QUANTUM_TOKEN&quot;) # edit as needed
 adapter = IBMSamplerAdapter.least_busy_backend(ibm_token)
 </code></pre>
+<p>You can create an adapter that simulates one of IBM's real computers (using Aer's Simulator, and the real noise models)</p>
+<pre><code class="language-Python">import os
+from qonscious.adapters import AerSimulatorAdapter
+ibm_token = os.getenv(&quot;IBM_QUANTUM_TOKEN&quot;) # edit as needed
+adapter = AerSimulatorAdapter.based_on(ibm_token, backend_name=&quot;ibm_brisbane&quot;) # you can choose a different one
+</code></pre>
 <p>You can even create an adapter on IonQ's QPU. This example shows how to work with
 the simulator of Aria-1 (including its noise model).</p>
 <pre><code class="language-Python">import os
@@ -2225,6 +2231,7 @@ are evaluated and circuits may be executed.</p>
                 <code>**kwargs</code>
             </td>
             <td>
+                  <code><span title="typing.Any">Any</span></code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2316,7 +2323,7 @@ and, if applicable, the experiment result produced by the action.</p>
     <span class="n">checks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">MeritComplianceCheck</span><span class="p">],</span>
     <span class="n">on_pass</span><span class="p">:</span> <span class="n">QonsciousAction</span><span class="p">,</span>
     <span class="n">on_fail</span><span class="p">:</span> <span class="n">QonsciousAction</span><span class="p">,</span>
-    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">QonsciousResult</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Main entry point of the Qonscious framework.</span>
@@ -2326,16 +2333,16 @@ and, if applicable, the experiment result produced by the action.</p>
 <span class="sd">    checks pass or any check fails.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        backend_adapter BackendAdapter : Adapter to the quantum backend on which figures of merit</span>
+<span class="sd">        backend_adapter: Adapter to the quantum backend on which figures of merit</span>
 <span class="sd">            are evaluated and circuits may be executed.</span>
-<span class="sd">        checks list[MeritComplianceCheck] : The merit compliance checks to perform on the backend.</span>
-<span class="sd">        on_pass QonsciousAction :  Action to execute if all checks succeed. Must implement</span>
+<span class="sd">        checks: The merit compliance checks to perform on the backend.</span>
+<span class="sd">        on_pass:  Action to execute if all checks succeed. Must implement</span>
 <span class="sd">            `run(backend_adapter, fom_results, **kwargs)` and return an `ExperimentResult` or `None`.</span>
-<span class="sd">        on_fail QonsciousAction : Action to execute if any check fails. Same contract as `on_pass`.</span>
-<span class="sd">        **kwargs : Additional keyword arguments forwarded to the checks and actions.</span>
+<span class="sd">        on_fail: Action to execute if any check fails. Same contract as `on_pass`.</span>
+<span class="sd">        **kwargs: Additional keyword arguments forwarded to the checks and actions.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        QonsciousResult : A result object containing the list of figure-of-merit results</span>
+<span class="sd">        QonsciousResult: A result object containing the list of figure-of-merit results</span>
 <span class="sd">            and, if applicable, the experiment result produced by the action.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 

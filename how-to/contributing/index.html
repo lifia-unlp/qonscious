@@ -579,8 +579,9 @@ ruff format .
 <p>Mark test methods that interact with IBM's backend (thus requiring a token) with the annotation <code>@pytest.mark.ibm_token_required</code></p>
 <p>Use:
 * <code>pytest</code> : to run all tests
-* <code>pytest -m "not ibm_token_required"</code> : to only run tests that to not interact with IBM's backend
-* <code>pytest -m "ibm_token_required"</code> : to only run tests that that do interact with IBM's backend</p>
+* <code>pytest -m "not (ibm_token_required or ionq_apikey_required)"</code> : to only run tests that to not interact with IBM's or IONQ<code>sbackend
+*</code>pytest -m "ibm_token_required"<code>: to only run tests that that do interact with IBM's backend
+*</code>pytest -m "ionq_apikey_required"` : to only run tests that that do interact with IONQ'S backend</p>
 <h2 id="visualstudio-code">VisualStudio Code</h2>
 <p>There is a _vscode_example_settings.json file that you can rename to .vscode/settings.json . It provides most default settings that help VSC find tests, work with notebooks, etc. </p>
 <h1 id="keep-documentation-up-to-date">Keep documentation up to date</h1>
