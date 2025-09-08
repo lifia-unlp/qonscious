@@ -16,7 +16,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.18">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.19">
     
     
       
@@ -563,6 +563,25 @@
 <p><strong>Merit compliance checks</strong> You often use FoM's to check if a given backend (i.e., adapted backend) offers the resources your use case needs. Checks (implementes as instances of the MeritComplianceCheck class) combine a FoM with a callback function that takes the result of checking that FoM on the backend and resutls true of false. Writing these checks is a bit convoluted so having many examples is useful.</p>
 <h1 id="5-versioning-and-releasing">5.    Versioning and releasing</h1>
 <p>In the current phase of development, the design of Qonscious will change often. As we create new FoMs, provide new backend adapters, and explore usage scenarios, the API will change. There will be no PyPI version you can install with pip. For the time being, you install with <code>pip install -e</code></p>
+<h2 id="versioning-semver">Versioning (SemVer)</h2>
+<ul>
+<li>MAJOR.MINOR.PATCH (tag <code>vX.Y.Z</code>)</li>
+<li>Pre-releases: <code>vX.Y.Z-rc.N</code></li>
+</ul>
+<h2 id="steps">Steps</h2>
+<ol>
+<li>Update code and docs.</li>
+<li>Update CHANGELOG.md.</li>
+<li>Choose version bump:</li>
+<li>Feature: MINOR</li>
+<li>Bugfix: PATCH</li>
+<li>Tag for TestPyPI (optional): <code>git tag vX.Y.Z-rc.1 &amp;&amp; git push origin vX.Y.Z-rc.1</code></li>
+<li>Verify installation from TestPyPI.</li>
+<li>Tag final: <code>git tag vX.Y.Z &amp;&amp; git push origin vX.Y.Z</code></li>
+<li>Create GitHub Release and paste CHANGELOG entries.</li>
+</ol>
+<p>Git: use v prefix for clarity: e.g., v0.1.0.</p>
+<p>We use <a href="https://www.conventionalcommits.org/en/v1.0.0/">Conventional Commits</a> (feat:, fix:, docs:, refactor:…) to evantually enable automated version bump.</p>
 <h1 id="6-development-notes">6.    Development notes</h1>
 <h2 id="typing">Typing</h2>
 <p>This project uses pyright as a typechecker (In VSCode it will work via PyLance). Settings are defined in pyrightconfig.json</p>
