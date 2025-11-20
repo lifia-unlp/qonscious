@@ -86,7 +86,6 @@ class GroverFigureOfMerit(FigureOfMerit):
         targets_int: list[int] | None,
     ) -> tuple[list[int], list[str]]:
 
-        # --- Elegir n (qubits) y N (tamaño del espacio) ---
         if num_qubits is not None:
             n = int(num_qubits)
             if n < MIN_QUBITS:
@@ -95,20 +94,19 @@ class GroverFigureOfMerit(FigureOfMerit):
                     f"Grover requieres at least {MIN_QUBITS} Qbits (N>=4)."
                 )
         else:
-            # Si no lo pasan, inferimos y forzamos mínimo 2
+            # If not specified, infer n from targets or num_tragets
             if targets_int and len(targets_int) > 0:
                 max_val = max(targets_int)
                 # n para representar el mayor target (0 -> 1 bit), luego clamp a 2
                 inferred = 1 if max_val == 0 else math.ceil(math.log2(max_val + 1))
             else:
-                # fallback simple a partir de cuántos objetivos hay
                 inferred = math.ceil(math.log2(max(num_targets, 1)))
-            n = max(MIN_QUBITS, inferred)
+            n = max(MIN_QUBITS, inferred)# fallback to at least MIN_QUBITS if inferred is less
 
         N = 2**n
         real_space = list(range(N))
 
-        # --- Elegir objetivos (enteros) dentro del rango real ---
+        # Picking tragets from integers or randomly
         if targets_int is None:
             if num_targets > len(real_space):
                 raise ValueError(
@@ -121,7 +119,7 @@ class GroverFigureOfMerit(FigureOfMerit):
                 if not (0 <= t < N):
                     raise ValueError(f"target out of range: {t} ∉ [0,{N-1}]")
 
-        # --- Formatear objetivos a bitstrings de ancho n ---
+        # format tragets to binary strings
         targets_binary = [format(t, f"0{n}b") for t in chosen]
         search_space = real_space
         return search_space, targets_binary
@@ -135,11 +133,9 @@ class GroverFigureOfMerit(FigureOfMerit):
                 bits_le = list(reversed(bitstr))  # Little-endian
                 zeros = [i for i, b in enumerate(bits_le) if b == "0"]
 
-                # Envolver con X los ceros
                 for i in zeros:
                     qc_oracle.x(i)
 
-                # Aplicar MCZ
                 if num_qubits > 1:
                     qc_oracle.h(tgt)
                     qc_oracle.mcx(list(range(num_qubits - 1)), tgt)
@@ -147,7 +143,6 @@ class GroverFigureOfMerit(FigureOfMerit):
                 else:
                     qc_oracle.z(tgt)
 
-                # Deshacer X
                 for i in zeros:
                     qc_oracle.x(i)
             return qc_oracle
@@ -173,7 +168,6 @@ class GroverFigureOfMerit(FigureOfMerit):
         oracle_gate = build_local_oracle(targets, n)
         diffusion_gate = build_local_diffusion(n)
 
-        # Aplicamos las iteraciones
         for _ in range(R):
             qc.compose(oracle_gate, qubits=range(n), inplace=True)
             qc.compose(diffusion_gate, qubits=range(n), inplace=True)
@@ -189,7 +183,7 @@ class GroverFigureOfMerit(FigureOfMerit):
     ) -> dict:
 
         P = {s: c / shots for s, c in counts.items()}
-        #takes the probabilities of target states
+        # Takes the probabilities of target states
         P_T = sum(P.get(s, 0.0) for s in targets)
         P_N = 1.0 - P_T
         # Standard deviation of target probabilities
