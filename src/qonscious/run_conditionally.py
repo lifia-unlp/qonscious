@@ -3,6 +3,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 
 if TYPE_CHECKING:
+    from collections.abc import Sequence
+
     from qonscious.actions.qonscious_action import QonsciousAction
     from qonscious.adapters.backend_adapter import BackendAdapter
     from qonscious.checks.merit_compliance_check import MeritComplianceCheck
@@ -11,7 +13,7 @@ if TYPE_CHECKING:
 
 def run_conditionally(
     backend_adapter: BackendAdapter,
-    checks: list[MeritComplianceCheck],
+    checks: Sequence[MeritComplianceCheck],
     on_pass: QonsciousAction,
     on_fail: QonsciousAction,
     **kwargs: Any,

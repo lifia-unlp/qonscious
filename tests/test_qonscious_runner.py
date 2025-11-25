@@ -16,10 +16,18 @@ if TYPE_CHECKING:
     )
 
 
+class DummyComplianceCheck(MeritComplianceCheck):
+    def __init__(self, value: bool = True):
+        self.value = value
+
+    def check(self, backend_adapter: BackendAdapter, **kwargs) -> dict:
+        return {"passed": self.value, "fom_result": {}}
+
+
 def test_run_conditionally():
     backend = AerSamplerAdapter()
-    passing_checks = [MeritComplianceCheck()]
-    failing_checks = [MeritComplianceCheck(figure_of_merit=None, decision_function=lambda _: False)]
+    passing_checks = [DummyComplianceCheck(True)]
+    failing_checks = [DummyComplianceCheck(False)]
 
     def on_pass(
         adapter: BackendAdapter, figures_of_merit_results: list[FigureOfMeritResult]
