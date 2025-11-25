@@ -20,6 +20,9 @@ if TYPE_CHECKING:
 
 
 class IBMSamplerAdapter(BackendAdapter):
+    """Adapter to use IBM Quantum SamplerV2 as a remote backend.
+    We can also use this to adapt the FakeXX backends"""
+
     def __init__(self, backend):
         self.backend = backend
 

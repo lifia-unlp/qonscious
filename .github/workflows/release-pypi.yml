@@ -1,9 +1,6 @@
 name: release
 
 on:
-  push:
-    tags:
-      - "v*.*.*"
   workflow_dispatch:
 
 permissions:
@@ -14,9 +11,6 @@ permissions:
 jobs:
   build-and-publish:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.10", "3.11"]
 
     env:
       IBM_QUANTUM_TOKEN: ${{ secrets.IBM_QUANTUM_TOKEN }}
@@ -29,7 +23,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: "3.10"
 
       - name: Install build deps
         run: |
@@ -59,18 +53,7 @@ jobs:
       - name: Build sdist and wheel
         run: python -m build
 
-      - name: Determine target repository
-        id: repo
-        run: |
-          TAG="${GITHUB_REF_NAME}"
-          if echo "$TAG" | grep -qE "-(a|b|rc)\.[0-9]+"; then
-            echo "repo=testpypi" >> $GITHUB_OUTPUT
-          else
-            echo "repo=pypi" >> $GITHUB_OUTPUT
-          fi
-
       - name: Publish to PyPI
-        if: steps.repo.outputs.repo == 'pypi'
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}

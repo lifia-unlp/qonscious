@@ -14,6 +14,8 @@ from qonscious.adapters.aer_simulator_adapter import AerSimulatorAdapter
 if TYPE_CHECKING:
     from qonscious.results.result_types import ExperimentResult
 
+TEST_BACKEND_NAME = "ibm_torino"
+
 
 @pytest.mark.ibm_token_required
 def test_aer_sampler_basic_run():
@@ -23,7 +25,7 @@ def test_aer_sampler_basic_run():
     qc.measure_all()
 
     ibm_token = os.getenv("IBM_QUANTUM_TOKEN")
-    adapter = AerSimulatorAdapter.based_on(token=ibm_token, backend_name="ibm_brisbane")
+    adapter = AerSimulatorAdapter.based_on(token=ibm_token, backend_name=TEST_BACKEND_NAME)
     result: ExperimentResult = adapter.run(qc, shots=1024)
 
     # Check result is a dict with expected keys
@@ -58,8 +60,8 @@ def test_props():
     ibm_token = os.getenv("IBM_QUANTUM_TOKEN")
 
     service = QiskitRuntimeService(channel="ibm_quantum_platform", token=ibm_token)
-    backend_to_compare_to = service.backend("ibm_brisbane")
-    adapter = AerSimulatorAdapter.based_on(token=ibm_token, backend_name="ibm_brisbane")
+    backend_to_compare_to = service.backend(TEST_BACKEND_NAME)
+    adapter = AerSimulatorAdapter.based_on(token=ibm_token, backend_name=TEST_BACKEND_NAME)
     n_qubits = adapter.n_qubits
     assert n_qubits == backend_to_compare_to.configuration().n_qubits
     t1s_avg = sum(adapter.t1s.values()) / len(adapter.t1s)

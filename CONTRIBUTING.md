@@ -45,7 +45,8 @@ In the current phase of development, the design of Qonscious will change often. 
 4. Update version in toml file
 5. Commit those changes (do not yet push)
 6. Tag: `git tag vX.Y.Z && git push origin vX.Y.Z`
-7. Push to main (upon seeing the new tag, the action will release the new version to PiPy)
+7. Push to main
+8. Manually run CI action and iof tests pass, then manually run the release action
 
 Git: use v prefix for clarity: e.g., v0.1.0.
 

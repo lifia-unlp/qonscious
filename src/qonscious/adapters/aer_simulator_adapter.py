@@ -23,6 +23,13 @@ if TYPE_CHECKING:
 
 
 class AerSimulatorAdapter(BackendAdapter):
+    """Adapter to use Qiskit AerSimulator as a local backend.
+    We can simulate a specific IBM Quantum backend by passing a token and the backend name.
+    The adapter will retrieve the noise model from IBM Quantum and configure the AerSimulator.
+    Future versions will let you pass a hand-made noise model as well.
+    Future version will be better suited to simulate non-IBM backends as well.
+    """
+
     def __init__(self, simulator: AerSimulator, qubits_properties: list, backend_name: str):
         self.simulator = simulator or AerSimulator()
         self.qubits_properties = qubits_properties

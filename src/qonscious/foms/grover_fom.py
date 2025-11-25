@@ -1,4 +1,9 @@
 # grade_fom.py
+"""GRADE: Figure of Merit basada en Grover (simple, sin barriers)
+This FoM is implemented based on the approach proposed in "Manor, S., Kumar, M., Behera, P., Khalid,
+A., & Zeng, O. (2025). GRADE: Grover-based Benchmarking Toolkit for Assessing Quantum Hardware.
+ ArXiv, abs/2504.19387"."""
+
 from __future__ import annotations
 
 import math

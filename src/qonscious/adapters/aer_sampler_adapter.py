@@ -17,6 +17,11 @@ if TYPE_CHECKING:
 
 
 class AerSamplerAdapter(BackendAdapter):
+    """Adapter to use Qiskit Aer SamplerV2 as a local backend.
+    Under the hood it will use an AerSimulator, but we do not care about it;
+    we let Aer choose how to do that. If we care about controlling the Simulator,
+    we better use AerSimulatorAdapter instead."""
+
     def __init__(self, sampler: Sampler | None = None):
         self.sampler = sampler or Sampler()
 
