@@ -56,7 +56,7 @@ We use [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) (f
 
 ## Setting up dependencies
 
-This project is organized with a pyproject.toml file, so there is no longer a need for a requirements.txt file.
+This project is organized with a [pyproject.toml](https://packaging.python.org/en/latest/guides/writing-pyproject-toml/) file, so there is no longer a need for a requirements.txt file.
 
 Python version is set in .python-version
 
